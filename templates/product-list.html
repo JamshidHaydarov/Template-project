@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card-body">
+    <h4>Product List</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}$</td>
+                <td> <img src="{{product.image.url}}" width="50" height="50" alt="" class="brand-img"></td>
+                <td>{{ product.number }}</td>
+                <td><a type="button" class="btn btn-warning" href="/product-update/{{ product.id }}">Update</a>
+                    <a type="button" class="btn btn-danger" href="/product-delete/{{ product.id }}">Delete</a>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="{%url 'product-create' %}">Create</a>
+</div>
+{% endblock %}
